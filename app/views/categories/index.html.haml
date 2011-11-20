@@ -1,0 +1,23 @@
+%h1 Listing categories
+
+%table
+  %tr
+    %th Feedzilla
+    %th Name
+    %th Feedzilla ur name
+    %th
+    %th
+    %th
+
+  - @categories.each do |category|
+    %tr
+      %td= category.feedzilla_id
+      %td= category.name
+      %td= category.feedzilla_ur_name
+      %td= link_to 'Show', category
+      %td= link_to 'Edit', edit_category_path(category)
+      %td= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Category', new_category_path

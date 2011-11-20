@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Feedzilla:
+  = @category.feedzilla_id
+%p
+  %b Name:
+  = @category.name
+%p
+  %b Feedzilla ur name:
+  = @category.feedzilla_ur_name
+
+= link_to 'Edit', edit_category_path(@category)
+\|
+= link_to 'Back', categories_path
