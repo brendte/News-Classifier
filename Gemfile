@@ -46,4 +46,6 @@ gem "haml", ">= 3.1.2"
 gem "haml-rails", ">= 0.3.4", :group => :development
 gem "zurb-foundation"
 gem "typhoeus"
+gem "thin"
+gem "kaminari"
 

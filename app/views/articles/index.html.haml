@@ -1,9 +1,13 @@
-%h1 Listing articles
+%h4 Listing articles
+
+= paginate @articles
 
 %table
   %tr
+    %th Category
     %th Title
     %th Body
+    %th Like?
     %th Url
     %th
     %th
@@ -11,13 +15,12 @@
 
   - @articles.each do |article|
     %tr
+      %td= article.category.name
       %td= article.title
       %td= article.body
-      %td= article.url
-      %td= link_to 'Show', article
-      %td= link_to 'Edit', edit_article_path(article)
-      %td= link_to 'Destroy', article, :confirm => 'Are you sure?', :method => :delete
+      %td
+        = form_tag({:controller => 'articles', :id => article.id, :action => 'toggle'}, :method => 'put', :remote => true) do
+          = submit_tag(article.like? ? 'Unlike' : 'Like', {:id => "button-#{article.id}", :onclick => "$(this).attr('value', '#{article.like? ? 'Like' : 'Unlike'}')"})
+      %td= link_to(article.url, article.url)
 
 %br
-
-= link_to 'New Article', new_article_path

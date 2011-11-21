@@ -1,7 +1,11 @@
 NewsClassifier::Application.routes.draw do
-  resources :categories
+  #resources :categories
 
-  resources :articles
+  resources :articles, :only => :index do
+    member do
+      put 'toggle'
+    end
+  end
 
   root :to => "home#index"
 

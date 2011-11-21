@@ -13,8 +13,7 @@ hydra = Typhoeus::Hydra.new
 category_request = Typhoeus::Request.new(
     "http://api.feedzilla.com/v1/categories.json",
     :method => :get,
-    :headers => {:Accept => "application/json"},
-    :params => {:order => "popular"}
+    :headers => {:Accept => "application/json"}
 )
 @category_article_metadata_requests = []
 @category_article_metadata_response = []
@@ -42,7 +41,8 @@ i = 0
 
   #create callback for request
   @category_article_metadata_requests[i].on_complete do |response|
-    ActiveSupport::JSON.decode response.body
+    rb = ActiveSupport::JSON.decode response.body
+    rb.merge({ 'category_id' => c['category_id'] })
   end
 
   #queue the request
@@ -55,10 +55,18 @@ end
 hydra.run
 
 @category_article_metadata_requests.each do |category|
+
   articles = category.handled_response['articles']
+  puts category.handled_response['category_id']
+  category_in_db = Category.find_by_feedzilla_id(category.handled_response['category_id'])
+  puts category_in_db
+  puts "***** CATEGORY ==> ID: #{category.handled_response['category_id']} #{category.handled_response['description']} *****"
   articles.each do |article|
-    Article.create({ :title => article['title'], :body => article['summary'], :url => article['url'], :publish_date => article['publish_date'] })
-    puts "==> Created article #{article['title']}"
+    if (article['title'].downcase.match /comment/).nil?
+      Article.create({ :title => article['title'], :body => article['summary'], :url => article['url'], :publish_date => article['publish_date'], :category => category_in_db, :like => false })
+
+      #puts "==> Created article #{article['title']}"
+    end
   end
 end
 
