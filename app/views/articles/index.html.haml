@@ -20,7 +20,7 @@
       %td= article.body
       %td
         = form_tag({:controller => 'articles', :id => article.id, :action => 'toggle'}, :method => 'put', :remote => true) do
-          = submit_tag(article.like? ? 'Unlike' : 'Like', {:id => "button-#{article.id}", :onclick => "$(this).attr('value', '#{article.like? ? 'Like' : 'Unlike'}')"})
+          = submit_tag(article.like? ? 'Unlike' : 'Like', {:id => "button-#{article.id}", :onclick => "window.toggle(#{article.id})"})
       %td= link_to(article.url, article.url)
 
 %br
