@@ -61,9 +61,11 @@ hydra.run
   category_in_db = Category.find_by_feedzilla_id(category.handled_response['category_id'])
   puts category_in_db
   puts "***** CATEGORY ==> ID: #{category.handled_response['category_id']} #{category.handled_response['description']} *****"
+  r = Random.new
   articles.each do |article|
     if (article['title'].downcase.match /comment/).nil?
-      Article.create({ :title => article['title'], :body => article['summary'], :url => article['url'], :publish_date => article['publish_date'], :category => category_in_db, :like => false })
+      like = r.rand(0..1) == 0 ? false : true
+      Article.create({ :title => article['title'], :body => article['summary'], :url => article['url'], :publish_date => article['publish_date'], :category => category_in_db, :like => like })
 
       #puts "==> Created article #{article['title']}"
     end
