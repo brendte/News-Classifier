@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111121042222) do
+ActiveRecord::Schema.define(:version => 20111122223324) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(:version => 20111121042222) do
     t.integer  "feedzilla_id"
     t.string   "name"
     t.string   "feedzilla_url_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_nbs", :force => true do |t|
+    t.string   "user"
+    t.binary   "nb_obj"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

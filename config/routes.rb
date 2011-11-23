@@ -7,6 +7,8 @@ NewsClassifier::Application.routes.draw do
     end
   end
 
+  post 'home/yesorno' => 'home#yesorno'
+
   root :to => "home#index"
 
   # The priority is based upon order of creation:

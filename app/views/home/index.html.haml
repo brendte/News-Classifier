@@ -1,1 +1,6 @@
-%h3 Home
+%h4 Will I Like This?
+
+= form_tag('/home/yesorno') do
+  = label_tag 'url'
+  = text_field_tag('url', nil, :placeholder => 'Enter the URL')
+  = submit_tag('Submit')

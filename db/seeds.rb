@@ -64,10 +64,9 @@ hydra.run
   r = Random.new
   articles.each do |article|
     if (article['title'].downcase.match /comment/).nil?
-      like = r.rand(0..1) == 0 ? false : true
+      like = r.rand(0..3) == 0 ? true : false
       Article.create({ :title => article['title'], :body => article['summary'], :url => article['url'], :publish_date => article['publish_date'], :category => category_in_db, :like => like })
 
-      #puts "==> Created article #{article['title']}"
     end
   end
 end

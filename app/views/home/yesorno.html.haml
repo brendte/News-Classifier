@@ -1,0 +1,15 @@
+%h3 Will I Like This?
+%h5= "Title: #{@title}"
+%br
+  = "Classification: #{@yes_or_no[:classification]}"
+  = "Probability you'll like it: #{@yes_or_no[:p_like]}"
+  = "Probability you won't like it: #{@yes_or_no[:p_dislike]}"
+
+%h4
+  So...
+  - if @yes_or_no[:classification]
+    You will probably like it :)
+  - else
+    You will probably NOT like :(
+
+%br= "Body"
