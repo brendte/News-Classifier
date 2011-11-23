@@ -38,9 +38,9 @@ group :test do
   gem 'turn', :require => false
 end
 # install a Javascript runtime for linux
-if HOST_OS =~ /linux/i
-  gem 'therubyracer', '>= 0.9.8'
-end
+#if HOST_OS =~ /linux/i
+#  gem 'therubyracer', '>= 0.9.8'
+#end
 
 gem "haml", ">= 3.1.2"
 gem "haml-rails", ">= 0.3.4", :group => :development
