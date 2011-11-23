@@ -7,6 +7,9 @@ window.toggle = (id) ->
   value = $(tag).attr('value')
   if value is 'Like'
     value = 'Unlike'
+    button = "nice small radius blue button"
   else
     value = 'Like'
+    button = "nice small radius red button"
   $(tag).attr('value', value)
+  $(tag).attr('class', button)

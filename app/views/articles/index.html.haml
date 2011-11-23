@@ -15,12 +15,12 @@
 
   - @articles.each do |article|
     %tr
-      %td= article.category.name
+      %td= article.category.name if !article.category.nil?
       %td= article.title
       %td= article.body
       %td
         = form_tag({:controller => 'articles', :id => article.id, :action => 'toggle'}, :method => 'put', :remote => true) do
-          = submit_tag(article.like? ? 'Unlike' : 'Like', {:id => "button-#{article.id}", :onclick => "window.toggle(#{article.id})"})
+          = submit_tag(article.like? ? 'Unlike' : 'Like', {:id => "button-#{article.id}", :onclick => "window.toggle(#{article.id})", :class => article.like? ? 'nice small radius blue button' : 'nice small radius red button'})
       %td= link_to(article.url, article.url)
 
 %br
