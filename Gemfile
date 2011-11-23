@@ -48,4 +48,6 @@ gem "zurb-foundation"
 gem "typhoeus"
 gem "thin"
 gem "kaminari"
+gem "pg"
+
 
