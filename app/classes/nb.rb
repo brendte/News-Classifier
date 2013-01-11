@@ -8,9 +8,9 @@ class NB
     # number of examples
     @number_examples = @examples.size
     # @vocabulary is a hash of distinct words in the examples and the number of occurrences in the corpus
-    # it takes the form {:<word> => <count>}
+    # it takes the form {:<word> => { :true => <count>, :false => <count>}
     @vocabulary = {}
-    # @p holds the a posteriori probabilities
+    # @p holds the a posteriori probabilities.  It takes the form {:<word> => { :true => <probability>, :false => <probability>}
     @p ={}
     # holds the total number of words in all the examples
     @total_words = {:true => 0, :false => 0}
