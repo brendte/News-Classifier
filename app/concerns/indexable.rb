@@ -12,6 +12,11 @@ module Indexable
     def generate_term_list
       Indexer.instance.generate_term_list(self.body)
     end
+
+    def score_against(query_instance)
+      s = Scorer.instance
+      s.score_one(self, query_instance)
+    end
   end
 
   module ClassMethods
@@ -20,9 +25,9 @@ module Indexable
       i.index(unindexed, self)
     end
 
-    def score_all_against(query_resource)
+    def score_all_against(query_instance)
       s = Scorer.instance
-      s.score(self, query_resource)
+      s.score_all(self, query_instance)
     end
   end
 end

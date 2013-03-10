@@ -11,6 +11,10 @@ class Indexer
     document_prep(document)
   end
 
+  def generate_term_frequency_list(document)
+    prep_document_and_count_terms(document)
+  end
+
   private
 
   def document_prep(document)
@@ -18,6 +22,22 @@ class Indexer
     unstemmed_words =  document.gsub(/[[:punct:]]/, '').downcase.split.select { |word| !STOP_WORDS.include?(word) }
     # use Porter's stemming algorithm to stem the words, and store them as symbols
     unstemmed_words.map { |word| word.stem.to_sym }
+  end
+
+  def prep_document_and_count_terms(document)
+    # initialize an empty hash to hold all the terms and term frequencies in this document: {:hello=>4,:there=>1}
+  	words_in_this_document = {}
+
+    # prep the words in the document
+    document_prep(document).each do |word|
+      # count the number of times a word appears in this document by iterating over the words array
+      # and either adding the word to the hash and setting the word count to 1, or incrementing the word count
+      # for an existing word by 1. for the document "hello there hello hello hello"
+      # the words_in_this_document hash has the final form {:hello=>4,:there=>1}
+      words_in_this_document[word] = words_in_this_document.has_key?(word) ? words_in_this_document[word] + 1 : 1
+    end
+
+    words_in_this_document
   end
 
   def update_dictionary_and_postings(documents, calling_resource)
@@ -28,17 +48,7 @@ class Indexer
 
   	# for each document in the passed-in documents collection, do the following:
     documents.each do |document|
-      # initialize an empty hash to hold all the terms and term frequencies in this document: {:hello=>4,:there=>1}
-  		words_in_this_document = {}
-
-      # prep the words in the document
-  		document_prep(document.body).each do |word|
-        # count the number of times a word appears in this document by iterating over the words array
-        # and either adding the word to the hash and setting the word count to 1, or incrementing the word count
-        # for an existing word by 1. for the document "hello there hello hello hello"
-        # the words_in_this_document hash has the final form {:hello=>4,:there=>1}
-        words_in_this_document[word] = words_in_this_document.has_key?(word) ? words_in_this_document[word] + 1 : 1
-      end
+      words_in_this_document = prep_document_and_count_terms(document.body)
 
       # add all the word=>word_count entries in this document's hash to the processed_documents hash for use below
       processed_documents[document.id] = words_in_this_document
