@@ -1,4 +1,6 @@
 class Query < ActiveRecord::Base
+  include Indexable
+
   belongs_to :user
 
   #TODO: user can create free-text queries. these are run through Indexer#process_new_query and then saved to the queries collection in mongo

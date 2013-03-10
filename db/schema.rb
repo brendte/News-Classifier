@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130310025832) do
+ActiveRecord::Schema.define(:version => 20130310171108) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20130310025832) do
     t.datetime "publish_date"
     t.boolean  "like"
     t.boolean  "indexed"
+    t.float    "euclidean_length"
   end
 
   create_table "feed_entries", :force => true do |t|
@@ -44,9 +45,11 @@ ActiveRecord::Schema.define(:version => 20130310025832) do
 
   create_table "queries", :force => true do |t|
     t.integer  "user_id"
-    t.string   "query_term_list_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "body"
+    t.boolean  "indexed"
+    t.float    "euclidean_length"
   end
 
   create_table "user_nbs", :force => true do |t|
