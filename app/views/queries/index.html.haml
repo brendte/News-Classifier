@@ -1,0 +1,21 @@
+%h1 Listing queries
+
+%table
+  %tr
+    %th User
+    %th Query term list
+    %th
+    %th
+    %th
+
+  - @queries.each do |query|
+    %tr
+      %td= query.user_id
+      %td= query.query_term_list_id
+      %td= link_to 'Show', query
+      %td= link_to 'Edit', edit_query_path(query)
+      %td= link_to 'Destroy', query, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Query', new_query_path

@@ -1,4 +1,8 @@
 NewsClassifier::Application.routes.draw do
+  resources :queries
+
+  devise_for :users
+
   #resources :categories
 
   resources :articles, :only => :index do

@@ -1,14 +1,14 @@
 require 'rbconfig'
 HOST_OS = RbConfig::CONFIG['host_os']
 
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gem 'rails', '3.1.11'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3', :group => :development
+gem 'sqlite3', group: :development
 
 
 
@@ -36,7 +36,7 @@ gem 'jquery-rails'
 
 group :test do
   # Pretty printed test output
-  gem 'turn', :require => false
+  gem 'turn', require: false
 end
 # install a Javascript runtime for linux
 #if HOST_OS =~ /linux/i
@@ -44,11 +44,18 @@ end
 #end
 
 gem "haml", ">= 3.1.2"
-gem "haml-rails", ">= 0.3.4", :group => :development
+gem "haml-rails", ">= 0.3.4", group: :development
 gem "zurb-foundation"
 gem "typhoeus"
 gem "thin"
 gem "kaminari"
 gem "pg"
+gem 'devise'
+gem 'fast-stemmer'
+gem 'mongo'
+gem 'bson_ext'
+gem 'feedzirra'
+gem 'jazz_hands', group: :development
+gem 'figaro'
 
 

@@ -1,0 +1,25 @@
+# Logfile created on 2013-03-05 15:23:22 -0500 by logger.rb/31641
+I, [2013-03-05T15:24:00.744821 #26097]  INFO -- : Net::HTTP::Get: /services/xml/rss/nyt/index.opml
+D, [2013-03-05T15:24:00.744952 #26097] DEBUG -- : request-header: accept => */*
+D, [2013-03-05T15:24:00.745003 #26097] DEBUG -- : request-header: user-agent => Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.51.22 (KHTML, like Gecko) Version/5.1.1 Safari/534.51.22
+D, [2013-03-05T15:24:00.745037 #26097] DEBUG -- : request-header: accept-encoding => gzip,deflate,identity
+D, [2013-03-05T15:24:00.745070 #26097] DEBUG -- : request-header: accept-charset => ISO-8859-1,utf-8;q=0.7,*;q=0.7
+D, [2013-03-05T15:24:00.745104 #26097] DEBUG -- : request-header: accept-language => en-us,en;q=0.5
+D, [2013-03-05T15:24:00.745135 #26097] DEBUG -- : request-header: host => www.nytimes.com
+I, [2013-03-05T15:24:00.818126 #26097]  INFO -- : status: Net::HTTPOK 1.1 200 OK
+D, [2013-03-05T15:24:00.818214 #26097] DEBUG -- : response-header: date => Tue, 05 Mar 2013 20:24:00 GMT
+D, [2013-03-05T15:24:00.818273 #26097] DEBUG -- : response-header: server => Apache
+D, [2013-03-05T15:24:00.818315 #26097] DEBUG -- : response-header: set-cookie => RMID=007f01007a7d51365460002a; Expires=Wed, 05 Mar 2014 20:24:00 GMT; Path=/; Domain=.nytimes.com;
+D, [2013-03-05T15:24:00.818348 #26097] DEBUG -- : response-header: vary => Host
+D, [2013-03-05T15:24:00.818380 #26097] DEBUG -- : response-header: last-modified => Thu, 03 Apr 2008 18:06:09 GMT
+D, [2013-03-05T15:24:00.818409 #26097] DEBUG -- : response-header: accept-ranges => bytes
+D, [2013-03-05T15:24:00.818440 #26097] DEBUG -- : response-header: ntcoent-length => 25484
+D, [2013-03-05T15:24:00.818470 #26097] DEBUG -- : response-header: connection => close
+D, [2013-03-05T15:24:00.818500 #26097] DEBUG -- : response-header: content-type => text/plain
+D, [2013-03-05T15:24:00.818534 #26097] DEBUG -- : response-header: cache-control => private
+D, [2013-03-05T15:24:00.818567 #26097] DEBUG -- : response-header: content-encoding => gzip
+D, [2013-03-05T15:24:00.818610 #26097] DEBUG -- : response-header: content-length => 2877
+D, [2013-03-05T15:24:00.818829 #26097] DEBUG -- : Read 1052 bytes (1052 total)
+D, [2013-03-05T15:24:00.818933 #26097] DEBUG -- : Read 1825 bytes (2877 total)
+D, [2013-03-05T15:24:00.819214 #26097] DEBUG -- : gzip response
+D, [2013-03-05T15:24:00.821864 #26097] DEBUG -- : saved cookie: RMID=007f01007a7d51365460002a
