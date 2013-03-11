@@ -1,9 +1,24 @@
 class ArticleRouter
-  #TODO: when new articles come in, this will go out to mongo queries collection, and retrieve all queries that contain at least one the words in the article
-  # it will then score the article against the full query, and if it meets or exceeds a threshold value, it will assign the article to the user who the query
-  # belongs to take query_id from query doc in mongo, lookup Query with that id in AR, traverse to user via Query#user and assign the article id to User#articles
+  include Singleton
 
-  def route(article)
+  DEFAULT_THRESHOLD = 0.5
 
+  def route_article(article)
+    Query.all.each do |query|
+      score = article.score_against(query)[0][1]
+      threshold = query.threshold ? query.threshold : ArticleRouter::DEFAULT_THRESHOLD
+      if score >= threshold
+        query.user.articles << article unless query.user.articles.exists?(article)
+      end
+    end
+
+    article.routed = true
+    article.save
+  end
+
+  def route_new
+    Article.unrouted.each do |article|
+      self.route_article(article)
+    end
   end
 end

@@ -37,7 +37,7 @@ class Crawler
           if body.blank?
             raise "Alchemy didn't show you any love"
           else
-            if Article.new(title: feed_entry.title, body: body, url: feed_entry.url, publish_date: feed_entry.published_at, like: false, indexed: false).save
+            if Article.new(title: feed_entry.title, body: body, url: feed_entry.url, publish_date: feed_entry.published_at, like: false, indexed: false, euclidean_length: 0.0, routed: false).save
               feed_entry.fetched = true
               feed_entry.save
             else

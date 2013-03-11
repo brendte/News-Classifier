@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130310171108) do
+ActiveRecord::Schema.define(:version => 20130311174918) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -23,6 +23,12 @@ ActiveRecord::Schema.define(:version => 20130310171108) do
     t.boolean  "like"
     t.boolean  "indexed"
     t.float    "euclidean_length"
+    t.boolean  "routed"
+  end
+
+  create_table "articles_users", :force => true do |t|
+    t.integer "user_id"
+    t.integer "article_id"
   end
 
   create_table "feed_entries", :force => true do |t|
@@ -50,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20130310171108) do
     t.text     "body"
     t.boolean  "indexed"
     t.float    "euclidean_length"
+    t.float    "threshold"
   end
 
   create_table "user_nbs", :force => true do |t|
@@ -77,10 +84,5 @@ ActiveRecord::Schema.define(:version => 20130310171108) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "users_articles", :force => true do |t|
-    t.integer "user_id"
-    t.integer "article_id"
-  end
 
 end
