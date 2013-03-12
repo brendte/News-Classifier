@@ -11,8 +11,10 @@
   %body{:class => params[:controller]}
     #container.container
       %header
-        - flash.each do |name, msg|
-          = content_tag :div, msg, :id => "flash_\#{name}" if msg.is_a?(String)
+        %p#notice= notice
+        -#- flash.each do |name, msg|
+        -#  = content_tag :div, msg, :id => "flash_\#{name}" if msg.is_a?(String)
+        = link_to 'Home', home_path
       #main{:role => "main"}
         = yield
       %footer

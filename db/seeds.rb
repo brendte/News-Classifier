@@ -18,7 +18,6 @@ feeds = %w{
   http://rss.cnn.com/rss/cnn_showbiz.rss
   http://rss.cnn.com/rss/cnn_travel.rss
   http://rss.cnn.com/rss/cnn_living.rss
-  http://rss.cnn.com/rss/cnn_freevideo.rss
   http://rss.cnn.com/rss/cnn_studentnews.rss
   http://rss.cnn.com/rss/cnn_mostpopular.rss
   http://rss.cnn.com/rss/cnn_latest.rss

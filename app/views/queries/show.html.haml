@@ -1,11 +1,10 @@
-%p#notice= notice
-
-%p
-  %b User:
-  = @query.user_id
 %p
   %b Query term list:
-  = @query.query_term_list_id
+  = @query.body
+
+%p
+  %b Threshold:
+  = @query.threshold
 
 = link_to 'Edit', edit_query_path(@query)
 \|

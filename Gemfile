@@ -8,10 +8,6 @@ gem 'rails', '3.1.11'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3', group: :development
-
-
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -33,6 +29,12 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+group :development do
+  gem 'sqlite3'
+  gem 'annotate', '>=2.5.0'
+  gem 'haml-rails', '>= 0.3.4'
+  gem 'jazz_hands'
+end
 
 group :test do
   # Pretty printed test output
@@ -43,19 +45,18 @@ end
 #  gem 'therubyracer', '>= 0.9.8'
 #end
 
-gem "haml", ">= 3.1.2"
-gem "haml-rails", ">= 0.3.4", group: :development
-gem "zurb-foundation"
-gem "typhoeus"
-gem "thin"
-gem "kaminari"
-gem "pg"
+gem 'haml', '>= 3.1.2'
+gem 'zurb-foundation'
+gem 'typhoeus'
+gem 'thin'
+gem 'kaminari'
+gem 'pg'
 gem 'devise'
 gem 'fast-stemmer'
 gem 'mongo'
 gem 'bson_ext'
 gem 'feedzirra'
-gem 'jazz_hands', group: :development
 gem 'figaro'
+gem 'rufus-scheduler'
 
 

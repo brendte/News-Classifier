@@ -40,14 +40,19 @@ class QueriesController < ApplicationController
   # POST /queries
   # POST /queries.json
   def create
+    threshold = params[:query][:threshold].to_f
+    params[:query][:threshold] = '1.0' if threshold > 1.0
+    params[:query][:threshold] = '0.0' if threshold < 0.0
+    params[:query].merge!({indexed: false, euclidean_length: 0.0})
     @query = Query.new(params[:query])
+    @query.user = current_user
 
     respond_to do |format|
       if @query.save
         format.html { redirect_to @query, notice: 'Query was successfully created.' }
         format.json { render json: @query, status: :created, location: @query }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @query.errors, status: :unprocessable_entity }
       end
     end
@@ -63,7 +68,7 @@ class QueriesController < ApplicationController
         format.html { redirect_to @query, notice: 'Query was successfully updated.' }
         format.json { head :ok }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @query.errors, status: :unprocessable_entity }
       end
     end

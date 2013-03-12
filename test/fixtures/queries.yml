@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: queries
+#
+#  id               :integer          not null, primary key
+#  user_id          :integer
+#  created_at       :datetime
+#  updated_at       :datetime
+#  body             :text
+#  indexed          :boolean
+#  euclidean_length :float
+#  threshold        :float
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:

@@ -7,10 +7,10 @@
           %li= msg
 
   .field
-    = f.label :user_id
-    = f.number_field :user_id
+    = f.label :query
+    = f.text_field :body
   .field
-    = f.label :query_term_list_id
-    = f.text_field :query_term_list_id
+    = f.label :threshold
+    = f.text_field :threshold
   .actions
     = f.submit 'Save'

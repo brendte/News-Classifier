@@ -1,26 +1,24 @@
-%h4 Listing articles
+%h4 All articles
+= link_to 'My Articles', home_path
 
 = paginate @articles
 
 %table
   %tr
-    %th Category
     %th Title
-    %th Body
-    %th Like?
+    %th Summary
     %th Url
+    %th Publication Date
     %th
     %th
     %th
 
   - @articles.each do |article|
     %tr
-      %td= article.category.name if !article.category.nil?
-      %td= article.title
-      %td= article.body
-      %td
-        = form_tag({:controller => 'articles', :id => article.id, :action => 'toggle'}, :method => 'put', :remote => true) do
-          = submit_tag(article.like? ? 'Unlike' : 'Like', {:id => "button-#{article.id}", :onclick => "window.toggle(#{article.id})", :class => article.like? ? 'nice small radius blue button' : 'nice small radius red button'})
-      %td= link_to(article.url, article.url)
+      - if article.feed_entry
+        %td= article.feed_entry.title
+        %td= article.feed_entry.summary
+        %td= link_to(article.feed_entry.url, article.feed_entry.url)
+        %td= article.feed_entry.published_at
 
 %br
