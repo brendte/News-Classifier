@@ -54,7 +54,7 @@ class Crawler
 
   def fetch_and_store_articles
     hydra = Typhoeus::Hydra.new(max_concurrency: 20)
-    FeedEntry.where(fetched: false).limit(10).each do |feed_entry|
+    FeedEntry.where(fetched: false).each do |feed_entry|
       begin
         request = Typhoeus::Request.new("http://access.alchemyapi.com/calls/url/URLGetText?apikey=2dca9a7577657ed330d2a99e2744a167f043b3c6&outputMode=json&url=#{feed_entry.url}")
         request.on_complete &store_article(feed_entry)
@@ -77,7 +77,6 @@ class Crawler
         if body_response.code == 200
           body = body_response.body['text'] ? JSON.parse(body_response.body)['text'] : ''
           if body.blank?
-            mark_as_fetched(feed_entry)
             raise "Alchemy returned a blank body for feed_entry: #{feed_entry.id}"
           else
             if feed_entry.create_article(body: body, indexed: false, euclidean_length: 0.0, routed: false)
