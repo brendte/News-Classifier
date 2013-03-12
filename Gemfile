@@ -48,7 +48,7 @@ end
 gem 'haml', '>= 3.1.2'
 gem 'zurb-foundation'
 gem 'typhoeus'
-gem 'thin'
+gem 'unicorn'
 gem 'kaminari'
 gem 'pg'
 gem 'devise'
@@ -58,5 +58,6 @@ gem 'bson_ext'
 gem 'feedzirra'
 gem 'figaro'
 gem 'rufus-scheduler'
+gem 'girl_friday'
 
 

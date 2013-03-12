@@ -17,7 +17,7 @@ class Query < ActiveRecord::Base
 
   belongs_to :user
 
-  after_create :route_me
+  after_save :route_me
 
   #TODO: user can create free-text queries. these are run through Indexer#process_new_query and then saved to the queries collection in mongo
   # queries collection {query_id: <Query#id>, terms: [:this, :that, :thing, ...]}
@@ -27,6 +27,6 @@ class Query < ActiveRecord::Base
   private
 
   def route_me
-    ArticleRouter.instance.route_on_new_query(self)
+    ROUTE_NEW_QUERY.push({query_id: self.id})
   end
 end
