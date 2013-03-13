@@ -12,7 +12,12 @@
     #container.container
       %header
         %p#notice= notice
-        = link_to 'Home', home_path
+        %ul.inline-list
+          %li
+            = link_to 'Home', home_path
+          = render 'shared/login_items'
+          = render 'shared/logout_items'
+
       #main{:role => "main"}
         = yield
       %footer
