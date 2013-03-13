@@ -40,12 +40,8 @@ class QueriesController < ApplicationController
   # POST /queries
   # POST /queries.json
   def create
-    threshold = params[:query][:threshold].to_f
-    params[:query][:threshold] = '1.0' if threshold > 1.0
-    params[:query][:threshold] = '0.0' if threshold < 0.0
-    params[:query].merge!({indexed: false, euclidean_length: 0.0})
-    @query = Query.new(params[:query])
-    @query.user = current_user
+
+    @query = Query.build_full(params, current_user)
 
     respond_to do |format|
       if @query.save

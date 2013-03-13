@@ -19,10 +19,15 @@ class Query < ActiveRecord::Base
 
   after_save :route_me
 
-  #TODO: user can create free-text queries. these are run through Indexer#process_new_query and then saved to the queries collection in mongo
-  # queries collection {query_id: <Query#id>, terms: [:this, :that, :thing, ...]}
-  # once the query is stored in mongo, the doc id from mongo is stored in Query#query_term_list_id as a string (BSON::ObjectId#to_s)
-  # to fetch queries from mongo via a Query, do BSON::ObjectId.new(Query#query_term_list_id)
+  def self.build_full(params, user)
+    threshold = params[:query][:threshold].to_f
+    params[:query][:threshold] = '1.0' if threshold > 1.0
+    params[:query][:threshold] = '0.1' if threshold < 0.1
+    params[:query].merge!({indexed: false, euclidean_length: 0.0})
+    query = self.new(params[:query])
+    query.user = user
+    query
+  end
 
   private
 
