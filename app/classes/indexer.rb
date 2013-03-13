@@ -27,7 +27,7 @@ class Indexer
       unstemmed_words =  document.gsub(/[[:punct:]]/, '').downcase.split.select { |word| !STOP_WORDS.include?(word) }
       # remove any non-alpha characters in each word and use Porter's stemming algorithm to stem the words, and store them as symbols
       unstemmed_words.map! do |unstemmed_word|
-        @stemmer.stem(unstemmed_word.gsub(/[^[[:alpha:]]]/, '')).to_sym
+        @stemmer.stem(unstemmed_word.gsub(/[^[[:alpha:]]]/, ''))
       end
 
       unstemmed_words
