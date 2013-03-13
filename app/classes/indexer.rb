@@ -3,6 +3,10 @@ class Indexer
 
   STOP_WORDS = 'a,able,about,across,after,all,almost,also,am,among,an,and,any,are,as,at,be,because,been,but,by,can,cannot,could,dear,did,do,does,either,else,ever,every,for,from,get,got,had,has,have,he,her,hers,him,his,how,however,i,if,in,into,is,it,its,just,least,let,like,likely,may,me,might,most,must,my,neither,no,nor,not,of,off,often,on,only,or,other,our,own,rather,said,say,says,she,should,since,so,some,than,that,the,their,them,then,there,these,they,this,tis,to,too,twas,us,wants,was,we,were,what,when,where,which,while,who,whom,why,will,with,would,yet,you,your,use,used'.split(',')
 
+  def initialize
+    @stemmer = Lingua::Stemmer.new(:language => 'en')
+  end
+
   def index(documents, calling_resource)
     update_dictionary_and_postings(documents, calling_resource)
   end
@@ -15,13 +19,19 @@ class Indexer
     prep_document_and_count_terms(document)
   end
 
-  private
+  #private
 
   def document_prep(document)
     # remove punctuation, convert all upper case letters to lower case letters, tokenize (split) into words, and remove stop words
-    unstemmed_words =  document.gsub(/[[:punct:]]/, '').downcase.split.select { |word| !STOP_WORDS.include?(word) }
-    # use Porter's stemming algorithm to stem the words, and store them as symbols
-    unstemmed_words.map { |word| word.stem.to_sym }
+    if document.is_a?(String)
+      unstemmed_words =  document.gsub(/[[:punct:]]/, '').downcase.split.select { |word| !STOP_WORDS.include?(word) }
+      # remove any non-alpha characters in each word and use Porter's stemming algorithm to stem the words, and store them as symbols
+      unstemmed_words.map! do |unstemmed_word|
+        @stemmer.stem(unstemmed_word.gsub(/[^[[:alpha:]]]/, '')).to_sym
+      end
+
+      unstemmed_words
+    end
   end
 
   def prep_document_and_count_terms(document)
