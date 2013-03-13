@@ -1,7 +1,7 @@
 unless Rails.env.to_sym == :development
   scheduler = Rufus::Scheduler.start_new
 
-  scheduler.every('3h') do
+  scheduler.every('30m') do
     Rails.logger.info "Crawler#crawl task started at #{Time.now}"
     Crawler.instance.crawl
     Rails.logger.info "Crawler#crawl task finished at #{Time.now}"
