@@ -19,7 +19,7 @@ class Indexer
     prep_document_and_count_terms(document)
   end
 
-  #private
+  private
 
   def document_prep(document)
     # remove punctuation, convert all upper case letters to lower case letters, tokenize (split) into words, and remove stop words
