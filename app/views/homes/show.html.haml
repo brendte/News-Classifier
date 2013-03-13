@@ -1,26 +1,7 @@
 %h4 My Articles
 = link_to 'All Articles', articles_path
 
+= render 'shared/articles_list'
 
-= paginate @articles
-
-%table
-  %tr
-    %th Title
-    %th Summary
-    %th Url
-    %th Publication Date
-    %th
-    %th
-    %th
-
-  - @articles.each do |article|
-    %tr
-      %td= article.feed_entry.title
-      %td= article.feed_entry.summary
-      %td= link_to(article.feed_entry.url, article.feed_entry.url)
-      %td= article.feed_entry.published_at
-
-%br
-  = link_to 'My Queries', queries_path
+= link_to 'My Queries', queries_path
 

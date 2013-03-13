@@ -1,0 +1,22 @@
+= paginate @articles
+
+%table
+  %tr
+    %th Title
+    %th Summary
+    %th Url
+    %th Publication Date
+    %th
+    %th
+    %th
+
+  - @articles.each do |article|
+    %tr
+      - if article.feed_entry
+        %td= article.feed_entry.title
+        %td= article.feed_entry.summary
+        %td= link_to(article.feed_entry.url, article.feed_entry.url, {target: '_blank'})
+        %td= article.feed_entry.published_at
+
+%br
+
