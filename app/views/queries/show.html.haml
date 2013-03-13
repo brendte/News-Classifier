@@ -1,0 +1,11 @@
+%p
+  %b Query term list:
+  = @query.body
+
+%p
+  %b Threshold:
+  = @query.threshold
+
+= link_to 'Edit', edit_query_path(@query)
+\|
+= link_to 'Back', queries_path

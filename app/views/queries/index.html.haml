@@ -1,0 +1,21 @@
+%h4 My queries
+
+%table
+  %tr
+    %th Query
+    %th Threshold
+    %th
+    %th
+    %th
+
+  - @queries.each do |query|
+    %tr
+      %td= query.body
+      %td= query.threshold
+      %td= link_to 'Show', query
+      %td= link_to 'Edit', edit_query_path(query)
+      %td= link_to 'Destroy', query, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Query', new_query_path

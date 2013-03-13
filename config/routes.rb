@@ -1,15 +1,13 @@
 NewsClassifier::Application.routes.draw do
-  #resources :categories
+  devise_for :users
 
-  resources :articles, :only => :index do
-    member do
-      put 'toggle'
-    end
-  end
+  resources :articles, only: :index
 
-  post 'home/yesorno' => 'home#yesorno'
+  resources :queries
 
-  root :to => "home#index"
+  resource :home, only: :show
+
+  root :to => "homes#show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

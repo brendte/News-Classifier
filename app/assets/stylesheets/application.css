@@ -6,3 +6,6 @@
  *= require foundation
  *= require_tree . 
 */
+ul.inline-list li {
+  display: inline;
+}

@@ -1,16 +1,12 @@
 require 'rbconfig'
 HOST_OS = RbConfig::CONFIG['host_os']
 
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gem 'rails', '3.1.11'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3', :group => :development
-
-
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -33,22 +29,35 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+group :development do
+  gem 'sqlite3'
+  gem 'annotate', '>=2.5.0'
+  gem 'haml-rails', '>= 0.3.4'
+  gem 'jazz_hands'
+end
 
 group :test do
   # Pretty printed test output
-  gem 'turn', :require => false
+  gem 'turn', require: false
 end
 # install a Javascript runtime for linux
 #if HOST_OS =~ /linux/i
 #  gem 'therubyracer', '>= 0.9.8'
 #end
 
-gem "haml", ">= 3.1.2"
-gem "haml-rails", ">= 0.3.4", :group => :development
-gem "zurb-foundation"
-gem "typhoeus"
-gem "thin"
-gem "kaminari"
-gem "pg"
+gem 'haml', '>= 3.1.2'
+gem 'zurb-foundation'
+gem 'typhoeus'
+gem 'unicorn'
+gem 'kaminari'
+gem 'pg'
+gem 'devise'
+gem 'ruby-stemmer', require: 'lingua/stemmer'
+gem 'mongo'
+gem 'bson_ext'
+gem 'feedzirra'
+gem 'figaro'
+gem 'rufus-scheduler'
+gem 'girl_friday'
 
 
