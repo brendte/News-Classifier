@@ -32,6 +32,6 @@ class Query < ActiveRecord::Base
   private
 
   def route_me
-    ROUTE_NEW_QUERY.push({query_id: self.id})
+    ROUTE_NEW_QUERY << {query_id: self.id}
   end
 end
